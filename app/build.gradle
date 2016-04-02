@@ -1,0 +1,69 @@
+apply plugin: 'com.android.model.application'
+
+model {
+    android {
+        compileSdkVersion = 23
+        buildToolsVersion = "23.0.2"
+
+        defaultConfig.with {
+            applicationId = "kr.selfcontrol.exeemulator"
+            minSdkVersion.apiLevel = 10
+            targetSdkVersion.apiLevel = 23
+        }
+    }
+
+
+    /*
+     * native build settings
+     */
+    android.ndk {
+        moduleName = "dasm"
+        /*
+         * Other ndk flags configurable here are
+         * cppFlags.add("-fno-rtti")
+         * cppFlags.add("-fno-exceptions")
+         * ldLibs.addAll(["android", "log"])
+         * stl       = "system"
+         */
+    }
+    android.buildTypes {
+        release {
+            minifyEnabled = false
+            proguardFiles.add(file('proguard-rules.txt'))
+        }
+    }
+}
+
+/*
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "kr.selfcontrol.exeemulator"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        ndk{
+            moduleName "dasm"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+}
+*/
